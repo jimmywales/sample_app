@@ -3,7 +3,7 @@ module SessionsHelper
 	def sign_in(user)
 		user.save # testing by Jimmy to force setting remember_token in database
 		cookies.permanent[:remember_token] = user.remember_token
-		current_user = user
+		self.current_user = user
 	end
 
 	def signed_in?
@@ -25,7 +25,7 @@ module SessionsHelper
 
 	def sign_out
 		cookies.delete(:remember_token)
-		@current_user = nil
+		self.current_user = nil
 		user = nil
 #		flash.now[:error] = "Signed out mofo"
 	end
