@@ -1,7 +1,6 @@
 module SessionsHelper
 
 	def sign_in(user)
-		user.save # testing by Jimmy to force setting remember_token in database
 		cookies.permanent[:remember_token] = user.remember_token
 		self.current_user = user
 	end
