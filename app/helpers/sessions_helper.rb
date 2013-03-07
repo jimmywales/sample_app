@@ -26,7 +26,15 @@ module SessionsHelper
 		cookies.delete(:remember_token)
 		self.current_user = nil
 		user = nil
-#		flash.now[:error] = "Signed out mofo"
+	end
+
+	def store_location
+		session[:return_to] = request.fullpath
+	end
+
+	def redirect_back_or(default)
+		redirect_to(session[:return_to] || default )
+		session.delete(:return_to)
 	end
 
 
