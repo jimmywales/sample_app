@@ -35,7 +35,6 @@ class UsersController < ApplicationController
   end
 
   def update
-    @user = User.find(params[:id])
     if @user.update_attributes(params[:user])
       sign_in @user # We re-sign in because remember_token was changed on update_attributes
       flash[:success] = "Profile updated!"
