@@ -2,11 +2,11 @@
 				<%= gravatar_for user, size:52 %>
 				<%= link_to user.name, user %>
 				<%# BUG: Why does this line not work? %>
-				<%# if current_user.admin? && !current_user?(user) %>
+				<% if current_user.admin? && !current_user?(user) %>
 
 				<%# In the book, we prevent current user from deleting self but here I prevent admin from deleting any other admin - did this because of mystery bug, up above %>
 				<%# TODO: Note this is only in the design - no enforcement so user could craft the URL to be naughty %>
-				<% if current_user.admin? &&! user.admin? %>
+				<%# if current_user.admin? &&! user.admin? %>
 					<%= link_to "delete", user, method: :delete, confirm: "You sure?" %>
 				<% end %>
 
