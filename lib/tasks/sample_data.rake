@@ -12,6 +12,12 @@ namespace :db  do
 			password = "password"
 			User.create!(name: name, email: email, password: password, password_confirmation: password)
 		end
+		users = User.all(limit: 6)
+		50.times do
+			Faker::Config.locale = 'en-bork'
+			content = Faker::Lorem.sentences(1).join(" ")
+			users.each { | user| user.microposts.create!(content: content)}
+		end
 	end
 
 end
